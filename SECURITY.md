@@ -9,7 +9,7 @@ This repository is **not certified compliant** with ISO/IEC 27001, FCA rules, UK
 - The desktop app makes no network calls and sends no image data to a cloud service.
 - It does not retain source images, thumbnails, telemetry, user identifiers, or image-content logs.
 - JPEG output has camera metadata removed, including EXIF location data.
-- It refuses to convert until a deployment administrator sets `ManagedOutputDirectory` in the published `appsettings.json` to an approved, access-controlled location.
+- The demonstration release writes output to the current Windows user's Desktop. A production deployment must configure `ManagedOutputDirectory` to an approved, access-controlled location.
 - Outputs never overwrite existing files.
 
 ## Controls outside this codebase
