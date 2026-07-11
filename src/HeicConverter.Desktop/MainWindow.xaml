@@ -1,0 +1,42 @@
+<Window x:Class="HeicConverter.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HEIC to JPEG Converter" Height="500" Width="700" MinHeight="430" MinWidth="620"
+        WindowStartupLocation="CenterScreen" Background="#F7F8FA">
+    <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <TextBlock Text="HEIC to JPEG Converter" FontSize="25" FontWeight="SemiBold" Foreground="#1B2838" />
+            <TextBlock Text="Choose HEIC/HEIF images or drag them into the box below." Margin="0,7,0,18" Foreground="#52606D" />
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ChooseButton" Click="ChooseButton_Click">Choose images</Button>
+                <Button x:Name="ClearButton" Click="ClearButton_Click">Clear list</Button>
+            </StackPanel>
+        </StackPanel>
+        <Border Grid.Row="1" Margin="0,18" BorderBrush="#AAB7C4" BorderThickness="1" CornerRadius="6"
+                Background="White" AllowDrop="True" DragOver="DropArea_DragOver" Drop="DropArea_Drop">
+            <Grid Margin="14">
+                <ListBox x:Name="FilesList" BorderThickness="0" />
+                <TextBlock x:Name="PlaceholderText" Text="Drop HEIC or HEIF files here" Foreground="#73808C"
+                           HorizontalAlignment="Center" VerticalAlignment="Center" IsHitTestVisible="False" />
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="2" Margin="0,0,0,15">
+            <TextBlock Text="JPEG quality" Foreground="#52606D" />
+            <StackPanel Orientation="Horizontal">
+                <Slider x:Name="QualitySlider" Minimum="50" Maximum="100" Value="90" Width="250" TickFrequency="5" IsSnapToTickEnabled="True" />
+                <TextBlock Text="{Binding ElementName=QualitySlider, Path=Value, StringFormat={}{0:F0}%}" Margin="12,0,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock x:Name="StatusText" Margin="0,10,0,0" Foreground="#52606D" TextWrapping="Wrap" />
+        </StackPanel>
+        <DockPanel Grid.Row="3">
+            <Button x:Name="OpenFolderButton" DockPanel.Dock="Left" Click="OpenFolderButton_Click">Open output folder</Button>
+            <Button x:Name="ConvertButton" DockPanel.Dock="Right" Click="ConvertButton_Click" Background="#146C94" Foreground="White">Convert to JPEG</Button>
+        </DockPanel>
+    </Grid>
+</Window>

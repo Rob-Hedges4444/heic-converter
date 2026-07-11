@@ -1,0 +1,15 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# IDE and user-specific files
+.vs/
+*.user
+*.suo
+
+# Local deployment settings: never commit personal or company paths.
+src/HeicConverter.Desktop/appsettings.local.json
+
+# Local scratch files
+work/
+outputs/
