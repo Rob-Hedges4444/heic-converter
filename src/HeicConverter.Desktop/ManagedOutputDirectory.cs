@@ -22,7 +22,7 @@ internal static class ManagedOutputDirectory
                 if (!document.RootElement.TryGetProperty("ManagedOutputDirectory", out var property) ||
                     string.IsNullOrWhiteSpace(property.GetString())) continue;
 
-                directory = Path.GetFullPath(property.GetString()!);
+                directory = Path.GetFullPath(Environment.ExpandEnvironmentVariables(property.GetString()!));
                 Directory.CreateDirectory(directory);
                 error = string.Empty;
                 return true;
