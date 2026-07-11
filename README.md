@@ -1,6 +1,6 @@
 # HEIC to JPEG Converter
 
-A Windows desktop MVP for internal users. It supports selecting or dragging in multiple `.heic` / `.heif` files and converts them to JPEG. It saves output only to the IT-managed directory configured in `appsettings.json`; it will not fall back to Downloads or a personal folder. Existing images are never overwritten: a number is added to duplicate names.
+A Windows desktop MVP for internal users. It supports selecting or dragging in multiple `.heic` / `.heif` files and converts them to JPEG. The demonstration configuration saves output to `Desktop\HEIC Conversions`; a production deployment must replace this with an IT-managed directory. Existing images are never overwritten: a number is added to duplicate names.
 
 ## Build and run
 
@@ -12,7 +12,7 @@ dotnet build -c Release
 dotnet run --project .\src\HeicConverter.Desktop
 ```
 
-For a personal development setup, copy `src\HeicConverter.Desktop\appsettings.local.example.json` to `appsettings.local.json` in the same folder and replace `YourName` with your Windows user name. This local file is intentionally ignored by Git and is never published. Production deployments should configure `appsettings.json` through the approved deployment process instead.
+The default output is `Desktop\HEIC Conversions`. To override it locally, copy `src\HeicConverter.Desktop\appsettings.local.example.json` to `appsettings.local.json` in the same folder and replace `YourName` with your Windows user name. This local file is intentionally ignored by Git and is never published. Production deployments should configure `appsettings.json` through the approved deployment process instead.
 
 To create a self-contained Windows executable for distribution:
 
