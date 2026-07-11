@@ -66,17 +66,23 @@ public partial class MainWindow : Window
         SetBusy(true);
         var completed = 0;
         var failures = new List<string>();
+        var convertedFiles = new List<string>();
         try
         {
             foreach (var file in _files.ToArray())
             {
                 StatusText.Text = $"Converting {++completed} of {_files.Count}: {Path.GetFileName(file)}";
-                try { await _converter.ConvertToJpegAsync(file, outputDirectory, (int)QualitySlider.Value); }
+                try { convertedFiles.Add(await _converter.ConvertToJpegAsync(file, outputDirectory, (int)QualitySlider.Value)); }
                 catch (Exception ex) { failures.Add($"{Path.GetFileName(file)}: {ex.Message}"); }
             }
             StatusText.Text = failures.Count == 0
                 ? $"Done — {_files.Count} JPEG(s) saved to {outputDirectory}."
                 : $"Finished with {failures.Count} failure(s): {string.Join("; ", failures)}";
+
+            if (convertedFiles.Count == 1)
+                OpenPath(convertedFiles[0]);
+            else if (convertedFiles.Count > 1)
+                OpenPath(outputDirectory);
         }
         finally { SetBusy(false); }
     }
@@ -84,8 +90,11 @@ public partial class MainWindow : Window
     private void OpenFolderButton_Click(object sender, RoutedEventArgs e)
     {
         if (_outputDirectory is not null)
-            Process.Start(new ProcessStartInfo { FileName = _outputDirectory, UseShellExecute = true });
+            OpenPath(_outputDirectory);
     }
+
+    private static void OpenPath(string path) =>
+        Process.Start(new ProcessStartInfo { FileName = path, UseShellExecute = true });
 
     private void UpdateUi()
     {
