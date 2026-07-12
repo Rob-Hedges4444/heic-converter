@@ -11,7 +11,11 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBlock Text="HEIC to JPEG Converter" FontSize="25" FontWeight="SemiBold" Foreground="#1B2838" />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="HEIC to JPEG Converter" FontSize="25" FontWeight="SemiBold" Foreground="#1B2838" />
+                <TextBlock Text="by Rob" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="25"
+                           Foreground="#52606D" FontStyle="Italic" />
+            </StackPanel>
             <TextBlock Text="Choose HEIC/HEIF images or drag them into the box below." Margin="0,7,0,18" Foreground="#52606D" />
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="ChooseButton" Click="ChooseButton_Click">Choose images</Button>
@@ -34,12 +38,12 @@
             </StackPanel>
             <TextBlock x:Name="StatusText" Margin="0,10,0,0" Foreground="#52606D" TextWrapping="Wrap" />
         </StackPanel>
-        <DockPanel Grid.Row="3" LastChildFill="False">
+        <DockPanel Grid.Row="3">
             <Button x:Name="OpenFolderButton" DockPanel.Dock="Left" Click="OpenFolderButton_Click">Open output folder</Button>
             <Button x:Name="ConvertButton" DockPanel.Dock="Right" Click="ConvertButton_Click" Background="#146C94" Foreground="White">Convert to JPEG</Button>
-            <TextBlock DockPanel.Dock="Right" Text="by Rob" Margin="0,0,14,0" VerticalAlignment="Center"
-                       Foreground="#8A96A3" FontSize="12" FontStyle="Italic" />
         </DockPanel>
     </Grid>
 </Window>
+
+
 
